@@ -1,0 +1,6 @@
+[submodule "Submodules/xcconfigs"]
+	path = Submodules/xcconfigs
+	url = https://github.com/jspahrsummers/xcconfigs.git
+[submodule "Submodules/Alamofire"]
+	path = Submodules/Alamofire
+	url = https://github.com/Alamofire/Alamofire.git
