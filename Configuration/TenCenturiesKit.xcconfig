@@ -1,0 +1,16 @@
+
+#include "../Submodules/xcconfigs/Base/Targets/Framework.xcconfig"
+#include "../Submodules/xcconfigs/Base/Configurations/Release.xcconfig"
+
+PRODUCT_NAME = TenCenturiesKit
+PRODUCT_BUNDLE_IDENTIFIER = org.10centuries.TenCenturiesKit
+MODULE_NAME = TenCenturiesKit
+IBSC_MODULE = TenCenturiesKit
+PRODUCT_MODULE_NAME = TenCenturiesKit
+EXECUTABLE_NAME = TenCenturiesKit
+
+INFOPLIST_FILE = TenCenturiesKit/Info.plist
+
+SWIFT_VERSION = 3.1
+
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/../Frameworks
