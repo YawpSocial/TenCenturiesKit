@@ -45,6 +45,7 @@
 		5B73867C1ED7A7FA00F9E6CC /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B73867B1ED7A7FA00F9E6CC /* DateUtilities.swift */; };
 		5B73867E1ED7CBC400F9E6CC /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B73867D1ED7CBC400F9E6CC /* URLHelper.swift */; };
 		5B7386801ED7CE1200F9E6CC /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B73867F1ED7CE1200F9E6CC /* LogoutResponse.swift */; };
+		5B7386821ED7E71800F9E6CC /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7386811ED7E71800F9E6CC /* Posts.swift */; };
 		5BD692391ED48E9100A323C6 /* TenCenturiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD6922F1ED48E9000A323C6 /* TenCenturiesKit.framework */; };
 		5BD692D81ED49BDF00A323C6 /* TenCenturiesKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD692D61ED49BDF00A323C6 /* TenCenturiesKitTests.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		5B73867B1ED7A7FA00F9E6CC /* DateUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
 		5B73867D1ED7CBC400F9E6CC /* URLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		5B73867F1ED7CE1200F9E6CC /* LogoutResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
+		5B7386811ED7E71800F9E6CC /* Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		5BD6922F1ED48E9000A323C6 /* TenCenturiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TenCenturiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BD692381ED48E9100A323C6 /* TenCenturiesKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TenCenturiesKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BD692B21ED49BD300A323C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				5B7386521ED7A28C00F9E6CC /* Authentication.swift */,
 				5B7386541ED7A28C00F9E6CC /* Blurbs.swift */,
+				5B7386811ED7E71800F9E6CC /* Posts.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				5B7386711ED7A28C00F9E6CC /* Payload.swift in Sources */,
 				5B7386731ED7A28C00F9E6CC /* RequestParsers.swift in Sources */,
 				5B73865B1ED7A28C00F9E6CC /* URLRequest.swift in Sources */,
+				5B7386821ED7E71800F9E6CC /* Posts.swift in Sources */,
 				5B7386581ED7A28C00F9E6CC /* CharacterSet.swift in Sources */,
 				5B73867A1ED7A46900F9E6CC /* StatusResponse.swift in Sources */,
 				5B73866C1ED7A28C00F9E6CC /* Privacy.swift in Sources */,
