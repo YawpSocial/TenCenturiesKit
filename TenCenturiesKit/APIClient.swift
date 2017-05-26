@@ -1,52 +1,53 @@
-//
-//  APIClient.swift
-//  TenCenturiesKit
-//
-//  Created by Paul Schifferer on 24/5/17.
-//  Copyright © 2017 Pilgrimage Software. All rights reserved.
-//
-
 import Foundation
-import Alamofire
 
 
-public class APIClient {
+public final class APIClient {
+    let baseURL : String = "https://api.10centuries.org"
 
-    private var clientId : String
-    private var accessToken : String?
+    public var accessToken: String?
+    lazy var session = URLSession.shared
 
-    public init(clientId : String, accessToken : String? = nil) {
-        self.clientId = clientId
+    public init(accessToken : String? = nil) {
         self.accessToken = accessToken
     }
 
-    public func execute(_ request : Alamofire.Request, completion : @escaping (_ json : [String : Any]?, _ error : Error?) -> Void) {
-
-        var headers : HTTPHeaders = [
-            "Content-type" : "application/json",
-        ]
-        if let accessToken = self.accessToken {
-            headers["Authorization"] = "Bearer \(accessToken)"
+    public func run<Model>(_ request : Request<Model>, completion : @escaping (Model?, Error?) -> Void) {
+        guard
+            let components = URLComponents(baseURL: baseURL, request: request),
+            let requestURL = components.url
+            else {
+                completion(nil, ClientError.malformedURL)
+                return
         }
 
-        request.encoding = JSONEncoding.default
-        request.headers = headers
-        request.validate()
-            .responseJSON { response in
+        let urlRequest = URLRequest(url: requestURL, request: request, accessToken: accessToken)
 
-                switch response.result {
-                case .success:
-                    if let json = response.result.value as? [String : Any] {
-                        completion(json, nil)
-                    }
-                    else {
-                        completion(nil, Errors.invalidResponseType)
-                    }
+        let task = session.dataTask(with: urlRequest) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
 
-                case .failure(let error):
-                    completion(nil, error)
-                }
+            guard
+                let data = data,
+                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+                else {
+                    completion(nil, ClientError.dataError)
+                    return
+            }
+
+            guard
+                let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode == 200
+                else {
+                    let serviceError = ServiceError(json: jsonObject)
+                    completion(nil, ClientError.serviceError(serviceError.description))
+                    return
+            }
+
+            completion(request.parse(jsonObject), nil)
         }
+
+        task.resume()
     }
-    
 }

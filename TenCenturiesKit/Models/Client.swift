@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Client {
@@ -17,7 +16,7 @@ public struct Client {
 
 
 extension Client : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
         guard let name = json["name"] as? String,
             let hash = json["hash"] as? String
             else { return nil }
@@ -26,8 +25,8 @@ extension Client : Serializable {
         self.hash = hash
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        let dict : JSONDictionary = [
             "hash": hash,
             "name": name,
         ]

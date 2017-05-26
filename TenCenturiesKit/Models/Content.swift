@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Content {
@@ -20,7 +19,7 @@ public struct Content {
 
 
 extension Content : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
         guard let text = json["text"] as? String,
             let html = json["html"] as? String
             else { return nil }
@@ -32,19 +31,19 @@ extension Content : Serializable {
         self.summary = json["summary"] as? String
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        var dict : JSONDictionary = [
             "text": text,
             "html": html,
             "is_edited": isEdited,
         ]
 
         if let summary = summary {
-            dict.setValue(summary, forKey: "summary")
+            dict["summary"] = summary
         }
 
         if let banner = banner {
-            dict.setValue(banner, forKey: "banner")
+            dict["banner"] = banner
         }
 
         return dict

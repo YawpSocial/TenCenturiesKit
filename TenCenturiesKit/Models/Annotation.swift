@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Annotation {
@@ -15,7 +14,7 @@ public struct Annotation {
 
 
 extension Annotation : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
         //        guard let id = json["id"] as? Int,
         //            let guid = json["guid"] as? String,
         //            let c = json["created_at"] as? String,
@@ -41,8 +40,8 @@ extension Annotation : Serializable {
         //        self.ownerId = json["owner_id"] as? Int
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        let dict : JSONDictionary = [
             :
         ]
         

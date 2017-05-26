@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Tag {
@@ -16,12 +15,12 @@ public struct Tag {
 
 
 extension Tag : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
 
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        let dict : JSONDictionary = [
             :
         ]
 

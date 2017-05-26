@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct File {
@@ -26,7 +25,7 @@ public struct File {
 
 
 extension File : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
         guard let id = json["id"] as? Int,
             let u = json["uploaded_at"] as? String,
             let uploadedAt = DateUtilities.isoFormatter.date(from: u),
@@ -53,8 +52,8 @@ extension File : Serializable {
         self.isAnimated = json["is_animated"] as? Bool ?? false
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        let dict : JSONDictionary = [
             "uploaded_at" : DateUtilities.isoFormatter.string(from: uploadedAt),
             "is_deleted": isDeleted,
             "updated_unix": uploadedUnix,

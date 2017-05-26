@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Thread {
@@ -18,7 +17,7 @@ public struct Thread {
 
 
 extension Thread : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
         guard let replyTo = json["reply_to"] as? Int,
             let threadId = json["thread_id"] as? Int
             else { return nil }
@@ -28,8 +27,8 @@ extension Thread : Serializable {
         self.isSelected = json["is_selected"] as? Bool ?? false
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        let dict : JSONDictionary = [
             "reply_to": replyTo,
             "thread_id": threadId,
             "is_selected": isSelected,

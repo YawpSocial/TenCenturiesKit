@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Account {
@@ -46,7 +45,7 @@ public struct Account {
 
 
 extension Account : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
         guard let id = json["id"] as? Int,
             let username = json["username"] as? String,
             let name = json["name"] as? [String : String],
@@ -80,7 +79,7 @@ extension Account : Serializable {
         self.display = display
         self.evangelist = evangelist
 
-        if let verified = json["verified"] as? [String : Any] {
+        if let verified = json["verified"] as? JSONDictionary {
             self.isVerified = verified["is_verified"] as? Bool ?? false
             if let url = verified["url"] as? String {
                 self.verifiedURL = URL(string: url)
@@ -99,7 +98,7 @@ extension Account : Serializable {
         self.createdAt = createdAt
         self.canonicalURL = canonicalURL
         self.avatarURL = avatarURL
-        self.annotations = (json["annotations"] as? [[String : Any]])?.flatMap { Annotation(from: $0) } ?? []
+        self.annotations = (json["annotations"] as? [JSONDictionary])?.flatMap { Annotation(from: $0) } ?? []
         self.youFollow = json["you_follow"] as? Bool ?? false
 
         if let url = json["cover_image"] as? String {
@@ -118,8 +117,8 @@ extension Account : Serializable {
         self.isSilenced = json["is_silenced"] as? Bool ?? false
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        var dict : JSONDictionary = [
             "username": username,
             "evangelist": evangelist,
             "is_silenced": isSilenced,
@@ -152,11 +151,11 @@ extension Account : Serializable {
             ]
 
         if let podcastRSS = podcastURL {
-            dict.setValue(podcastRSS, forKey: "podcast_rss")
+            dict["podcast_rss"] = podcastRSS
         }
 
         if let cover = coverImage {
-            dict.setValue(cover.absoluteString, forKey: "cover_image")
+            dict["cover_image"] = cover.absoluteString
         }
 
         if isVerified,
@@ -166,7 +165,7 @@ extension Account : Serializable {
                 "is_verified": isVerified,
                 ]
 
-            dict.setValue(v, forKey: "verified")
+            dict["verified"] = v
         }
 
         return dict

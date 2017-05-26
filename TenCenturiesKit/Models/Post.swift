@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Post {
@@ -67,7 +66,8 @@ public enum PostType : String {
 
 
 extension Post : Serializable {
-    public init?(from json : [String : Any]) {
+
+    public init?(from json : JSONDictionary) {
         guard let id = json["id"] as? Int,
             let title = json["title"] as? String,
             let slug = json["slug"] as? String,
@@ -82,10 +82,10 @@ extension Post : Serializable {
             let fullURL = URL(string: fullURLStr),
             let altURLStr = json["alt_url"] as? String,
             let altURL = URL(string: altURLStr),
-            let account = json["account"] as? [[String : Any]],
-            let ch = json["channel"] as? [String : Any],
+            let account = json["account"] as? [JSONDictionary],
+            let ch = json["channel"] as? JSONDictionary,
             let channel = Channel(from: ch),
-            let cl = json["client"] as? [String : Any],
+            let cl = json["client"] as? JSONDictionary,
             let client = Client(from: cl),
             let c = json["created_at"] as? String,
             let createdAt = DateUtilities.isoFormatter.date(from: c),
@@ -120,21 +120,21 @@ extension Post : Serializable {
 
         self.account = account.flatMap { Account(from: $0) }
 
-        if let content = json["content"] as? [String : Any] {
+        if let content = json["content"] as? JSONDictionary {
             self.content = Content(from: content)
         }
 
-        if let tags = json["tags"] as? [[String : Any]] {
+        if let tags = json["tags"] as? [JSONDictionary] {
             self.tags = tags.flatMap { Tag(from: $0) }
         }
 
         self.isHTTPS = json["is_https"] as? Bool ?? false
 
-        if let thread = json["thread"] as? [String : Any] {
+        if let thread = json["thread"] as? JSONDictionary {
             self.thread = Thread(from: thread)
         }
 
-        if let mentions = json["mentions"] as? [[String : Any]] {
+        if let mentions = json["mentions"] as? [JSONDictionary] {
             self.mentions = mentions.flatMap { Mention(from: $0) }
         }
 
@@ -166,18 +166,18 @@ extension Post : Serializable {
             self.reposts = v
         }
 
-        if let parent = json["parent"] as? [String : Any],
+        if let parent = json["parent"] as? JSONDictionary,
             let p = Post(from: parent) {
             self.parent = Indirect<Post>(p)
         }
     }
 
-    public func toDictionary() -> NSDictionary {
+    public func toDictionary() -> JSONDictionary {
         let (altUrl, isHTTPS) = URLHelper.trim(url: altURL)
         let (canonicalUrl, _) = URLHelper.trim(url: canonicalURL)
         let (fullUrl, _) = URLHelper.trim(url: fullURL)
 
-        let dict : NSDictionary = [
+        var dict : JSONDictionary = [
             "is_visible": isVisible,
             "updated_at": DateUtilities.isoFormatter.string(from: updatedAt),
             "you_reposted": youReblurbed,
@@ -212,40 +212,40 @@ extension Post : Serializable {
             ]
 
         if let content = content {
-            dict.setValue(content.toDictionary(), forKey: "content")
+            dict["content"] = content.toDictionary()
         }
 
         if let parentId = parentId,
             let parent = parent {
-            dict.setValue(parentId, forKey: "parent_id")
-            dict.setValue(parent.value.toDictionary(), forKey: "parent")
+            dict["parent_id"] = parentId
+            dict["parent"] = parent.value.toDictionary()
         }
 
         if let files = files {
-            dict.setValue(files.map({ $0.toDictionary() }), forKey: "files")
+            dict["files"] = files.map({ $0.toDictionary() })
         }
 
         if let stars = stars {
-            dict.setValue(stars, forKey: "stars")
+            dict["stars"] = stars
         }
 
         if let reposts = reposts {
-            dict.setValue(reposts, forKey: "reposts")
+            dict["reposts"] = reposts
         }
 
         if let expiresAt = expiresAt {
-            dict.setValue(expiresAt, forKey: "expires_at")
+            dict["expires_at"] = expiresAt
         }
         if let expiresUnix = expiresUnix {
-            dict.setValue(expiresUnix, forKey: "expires_unix")
+            dict["expires_unix"] = expiresUnix
         }
 
         if let thread = thread {
-            dict.setValue(thread.toDictionary(), forKey: "thread")
+            dict["thread"] = thread.toDictionary()
         }
 
         if let pin = youPinned {
-            dict.setValue(pin.rawValue, forKey: "you_pinned")
+            dict["you_pinned"] = pin.rawValue
         }
 
         return dict

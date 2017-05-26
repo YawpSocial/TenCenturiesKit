@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Channel {
@@ -31,7 +30,7 @@ public enum ChannelType : String {
 
 
 extension Channel : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
         guard let id = json["id"] as? Int,
             let guid = json["guid"] as? String,
             let c = json["created_at"] as? String,
@@ -57,8 +56,8 @@ extension Channel : Serializable {
         self.ownerId = json["owner_id"] as? Int
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        var dict : JSONDictionary = [
             "privacy": privacy.rawValue,
             "created_at": DateUtilities.isoFormatter.string(from: createdAt),
             "updated_unix": createdUnix,
@@ -70,7 +69,7 @@ extension Channel : Serializable {
         ]
 
         if let ownerId = ownerId {
-            dict.setValue(ownerId, forKey: "owner_id")
+            dict["owner_id"] = ownerId
         }
 
         return dict

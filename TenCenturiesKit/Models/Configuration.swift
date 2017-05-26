@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Configuration {
@@ -19,12 +18,12 @@ public struct Configuration {
 
 
 extension Configuration : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
 
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        let dict : JSONDictionary = [
             :
         ]
 

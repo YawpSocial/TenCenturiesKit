@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PilgrimageKit
 
 
 public struct Mention {
@@ -18,7 +17,7 @@ public struct Mention {
 
 
 extension Mention : Serializable {
-    public init?(from json : [String : Any]) {
+    public init?(from json : JSONDictionary) {
         guard let name = json["name"] as? String,
             let id = json["id"] as? Int,
             let current = json["current"] as? String
@@ -29,8 +28,8 @@ extension Mention : Serializable {
         self.name = name
     }
 
-    public func toDictionary() -> NSDictionary {
-        let dict : NSDictionary = [
+    public func toDictionary() -> JSONDictionary {
+        let dict : JSONDictionary = [
             "current": current,
             "id": id,
             "name": name,
