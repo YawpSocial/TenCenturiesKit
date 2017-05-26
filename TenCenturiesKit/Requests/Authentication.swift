@@ -1,7 +1,7 @@
 import Foundation
 
 
-public struct Login {
+public struct Authentication {
 
     /// Logs the user in.
     ///
@@ -10,7 +10,7 @@ public struct Login {
     ///   - username: The user's username or e-mail address.
     ///   - password: The user's password.
     /// - Returns: Request for `LoginSettings`.
-    public static func silent(clientID: String, username: String, password: String) -> Request<LoginResponse> {
+    public static func login(clientID: String, username: String, password: String) -> Request<LoginResponse> {
         let parameters = [
             Parameter(name: "client_guid", value: clientID),
             Parameter(name: "acctname", value: username),
