@@ -1,6 +1,8 @@
 import Foundation
 
 
+public typealias BlurbResource = Request<[Post]>
+
 public struct Blurbs {
 
     /**
