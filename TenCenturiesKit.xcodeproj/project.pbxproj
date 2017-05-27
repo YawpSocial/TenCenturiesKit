@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B45467F1ED9C5D900FFD9F6 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B45467E1ED9C5D900FFD9F6 /* Accounts.swift */; };
 		5B7386561ED7A28C00F9E6CC /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7386301ED7A28C00F9E6CC /* APIClient.swift */; };
 		5B7386571ED7A28C00F9E6CC /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7386311ED7A28C00F9E6CC /* ClientError.swift */; };
 		5B7386581ED7A28C00F9E6CC /* CharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7386331ED7A28C00F9E6CC /* CharacterSet.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B45467E1ED9C5D900FFD9F6 /* Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		5B7386301ED7A28C00F9E6CC /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5B7386311ED7A28C00F9E6CC /* ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		5B7386331ED7A28C00F9E6CC /* CharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSet.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				5B7386521ED7A28C00F9E6CC /* Authentication.swift */,
+				5B45467E1ED9C5D900FFD9F6 /* Accounts.swift */,
 				5B7386541ED7A28C00F9E6CC /* Blurbs.swift */,
 				5B7DF5961ED8C67700F85F7D /* Files.swift */,
 				5B7386811ED7E71800F9E6CC /* Posts.swift */,
@@ -414,6 +417,7 @@
 				5B7386821ED7E71800F9E6CC /* Posts.swift in Sources */,
 				5B7386581ED7A28C00F9E6CC /* CharacterSet.swift in Sources */,
 				5B73867A1ED7A46900F9E6CC /* StatusResponse.swift in Sources */,
+				5B45467F1ED9C5D900FFD9F6 /* Accounts.swift in Sources */,
 				5B7DF59F1ED8CF1300F85F7D /* MediaAttachment.swift in Sources */,
 				5B73866C1ED7A28C00F9E6CC /* Privacy.swift in Sources */,
 				5B7386611ED7A28C00F9E6CC /* Annotation.swift in Sources */,
