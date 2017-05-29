@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name                    = "TenCenturiesKit"
-	s.version                 = "0.5.9"
+	s.version                 = "0.5.10"
 	s.summary                 = "A client library for the 10 Centuries social platform written in Swift"
 
 	s.homepage                = "https://pnut.io"

@@ -84,7 +84,7 @@ extension Post : Serializable {
             let fullURLStr = urls["full_url"] as? String,
             let fullURL = URLHelper.buildURL(from: fullURLStr, isHTTPS: isHTTPS),
             let altURLStr = urls["alt_url"] as? String,
-            let altURL = URL(string: altURLStr),
+            let altURL = URLHelper.buildURL(from: altURLStr, isHTTPS: isHTTPS),
             let accounts = json["account"] as? [JSONDictionary],
             let ch = json["channel"] as? JSONDictionary,
             let channel = Channel(from: ch),
