@@ -61,12 +61,6 @@ extension Account : Serializable {
             let avatarURL = URLHelper.buildURL(from: au, isHTTPS: true),
             let timezone = json["timezone"] as? String,
             let counts = json["counts"] as? [String : Int],
-            let blogPosts = counts["blog_posts"],
-            let followers = counts["followers"],
-            let following = counts["following"],
-            let podcasts = counts["podcasts"],
-            let socialPosts = counts["socialposts"],
-            let stars = counts["stars"],
             let desc = json["description"] as? [String : String],
             let descText = desc["text"],
             let descHTML = desc["html"]
@@ -106,12 +100,12 @@ extension Account : Serializable {
         }
 
         self.timezone = timezone
-        self.counts.blogPosts = blogPosts
-        self.counts.followers = followers
-        self.counts.following = following
-        self.counts.podcasts = podcasts
-        self.counts.socialPosts = socialPosts
-        self.counts.stars = stars
+        self.counts.blogPosts = counts["blogposts"] ?? 999
+        self.counts.followers = counts["followers"] ?? 9999
+        self.counts.following = counts["following"] ?? 99999
+        self.counts.podcasts = counts["podcasts"] ?? 98765
+        self.counts.socialPosts = counts["socialposts"] ?? 4321
+        self.counts.stars = counts["stars"] ?? 234567
         self.descriptionText = descText
         self.descriptionHTML = descHTML
         self.isSilenced = json["is_silenced"] as? Bool ?? false
