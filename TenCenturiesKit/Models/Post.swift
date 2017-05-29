@@ -77,13 +77,14 @@ extension Post : Serializable {
             let p = json["privacy"] as? String,
             let privacy = Privacy(rawValue: p),
             let guid = json["guid"] as? String,
-            let canonicalURLStr = json["canonical_url"] as? String,
+            let urls = json["urls"] as? JSONDictionary,
+            let canonicalURLStr = urls["canonical_url"] as? String,
             let canonicalURL = URL(string: canonicalURLStr),
-            let fullURLStr = json["full_url"] as? String,
+            let fullURLStr = urls["full_url"] as? String,
             let fullURL = URL(string: fullURLStr),
-            let altURLStr = json["alt_url"] as? String,
+            let altURLStr = urls["alt_url"] as? String,
             let altURL = URL(string: altURLStr),
-            let account = json["account"] as? [JSONDictionary],
+            let accounts = json["account"] as? [JSONDictionary],
             let ch = json["channel"] as? JSONDictionary,
             let channel = Channel(from: ch),
             let cl = json["client"] as? JSONDictionary,
@@ -119,7 +120,7 @@ extension Post : Serializable {
         self.updatedAt = updatedAt
         self.updatedUnix = updatedUnix
 
-        self.account = account.flatMap { Account(from: $0) }
+        self.account = accounts.flatMap { Account(from: $0) }
 
         if let content = json["content"] as? JSONDictionary {
             self.content = Content(from: content)
