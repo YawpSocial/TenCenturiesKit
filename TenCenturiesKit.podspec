@@ -6,6 +6,7 @@ Pod::Spec.new do |s|
 	s.homepage                = "https://pnut.io"
 	s.license                 = { :type => 'MIT', :file => 'LICENSE' }
 	s.author                  = { "Paul Schifferer" => "paul@schifferers.net" }
+	s.social_media_url        = "https://twitter.com/paulyhedral"
 
 	s.source                  = { :git => "https://github.com/exsortis/TenCenturiesKit.git", :tag => s.version.to_s, :submodules => true }
 	s.source_files            = 'TenCenturiesKit/*.{h,m,c,swift}', 'TenCenturiesKit/**/*.{h,m,c,swift}'
