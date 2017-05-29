@@ -12,7 +12,15 @@ import Foundation
 public struct URLHelper {
 
     public static func buildURL(from urlBase : String, isHTTPS : Bool) -> URL? {
-        return URL(string: "http\(isHTTPS ? "s" : "")://\(urlBase)")
+        if urlBase.hasPrefix("//"),
+            let url = URL(string: "http\(isHTTPS ? "s" : ""):\(urlBase)") {
+            return url
+        }
+        else if let url = URL(string: "http\(isHTTPS ? "s" : "")://\(urlBase)") {
+            return url
+        }
+
+        return URL(string: urlBase)
     }
 
     public static func trim(url : URL) -> (String, Bool) {
