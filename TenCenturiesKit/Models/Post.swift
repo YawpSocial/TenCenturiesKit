@@ -58,6 +58,7 @@ public struct Post {
 
 public enum PostType : String {
     case micro = "post.micro"
+    case social = "post.social"
     case tiny = "post.tiny"
     case short = "post.short"
     case long = "post.long"
