@@ -58,7 +58,7 @@ extension Account : Serializable {
             let cu = json["canonical_url"] as? String,
             let canonicalURL = URL(string: cu),
             let au = json["avatar_url"] as? String,
-            let avatarURL = URL(string: au),
+            let avatarURL = URLHelper.buildURL(from: au, isHTTPS: true),
             let timezone = json["timezone"] as? String,
             let counts = json["counts"] as? [String : Int],
             let blogPosts = counts["blog_posts"],
