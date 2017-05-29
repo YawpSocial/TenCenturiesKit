@@ -23,9 +23,7 @@ public struct Channel {
 
 
 public enum ChannelType : String {
-    case `public` = "visibility.public"
-    case followers = "visibility.followers"
-    case me = "visibility.me"
+    case global = "channel.global"
 }
 
 
