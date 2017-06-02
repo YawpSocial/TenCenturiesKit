@@ -9,7 +9,7 @@ IBSC_MODULE = TenCenturiesKit
 PRODUCT_MODULE_NAME = TenCenturiesKit
 EXECUTABLE_NAME = TenCenturiesKit
 
-INFOPLIST_FILE = TenCenturiesKit/Info.plist
+INFOPLIST_FILE = Sources/TenCenturiesKit/Info.plist
 
 SWIFT_VERSION = 3.1
 
